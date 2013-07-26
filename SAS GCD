@@ -1,0 +1,30 @@
+************define the GCD function***************;
+
+%macro GCD(GCD_1, GCD_2);
+
+Data _NULL_;
+  format Rest Best.;
+  format Divedend Best.
+  format Divisor Best.;
+  Divedend = max(&GCD_1,&GCD_2);
+  Divisor = min(&GCD_1,&GCD_2);
+  Rest = Divisor;
+  if Divedend*Divisor <=0  then put ‘Greatest Common Divisor dosn't exist for these 2 numbers’;
+  
+  else do;
+    do while (Rest ne 0);
+      Rest = mod(Divedend,Divisor);
+      Divended = Divisor;
+      Divisor = Rest;
+    end; 
+    put ‘Greatest Common Divisor of &GCD_1 and  &GCD_2 is’;
+    put Divended;
+  end;
+ 
+run;
+
+%mend;
+
+
+****************call GCD function**********************;
+%GCD(120,36);
