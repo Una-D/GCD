@@ -12,13 +12,16 @@ Data _NULL_;
   if Divedend*Divisor <=0  then put ‘Greatest Common Divisor dosn't exist for these 2 numbers’;
   
   else do;
-    do while (Rest ne 0);
+    do while (Rest ne 0 and Divisor ne 1);
       Rest = mod(Divedend,Divisor);
       Divended = Divisor;
       Divisor = Rest;
     end; 
-    put ‘Greatest Common Divisor of &GCD_1 and  &GCD_2 is’;
-    put Divended;
+    if Divisor ne 1 then  do;
+      put ‘Greatest Common Divisor of &GCD_1 and  &GCD_2 is’;
+      put Divended;
+    end;
+    else put ‘Greatest Common Divisor dosn't exist for these 2 numbers’    
   end;
  
 run;
